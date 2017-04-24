@@ -32,12 +32,12 @@ html
         } else {
           console.log("user is signed out");
         }
-      });
+        });
 
-      var user = firebase.auth().currentUser;
-      var name, email, photoUrl, uid, emailVerified;
+        var user = firebase.auth().currentUser;
+        var name, email, photoUrl, uid, emailVerified;
 
-      if (user != null) {
+        if (user != null) {
         name = user.displayName;
         email = user.email;
         photoUrl = user.photoURL;
@@ -45,7 +45,7 @@ html
         uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
                          // this value to authenticate with your backend server, if
                          // you have one. Use User.getToken() instead.
-      }
+        }
 
   body
     block content

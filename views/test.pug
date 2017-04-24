@@ -1,0 +1,165 @@
+//doctype
+//
+//html
+//    head
+//        title Material Test
+//
+//        link(rel='stylesheet' href='/stylesheets/materialize.min.css')
+//        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+//
+//    body
+//        script(type='text/javascript' src="https://code.jquery.com/jquery-2.1.1.min.js")
+//        script(type='text/javascript' src='/js/materialize.min.js')
+
+doctype html
+html(lang='en')
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+        title CS2340
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        link(href='stylesheets/materialize.min.css', type='text/css', rel='stylesheet', media='screen,projection')
+        link(href='stylesheets/style2.css', type='text/css', rel='stylesheet', media='screen,projection')
+
+        //script(src='https://www.gstatic.com/firebasejs/3.8.0/firebase.js')
+        //script(src='https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js')
+        //script.
+        //    // Initialize Firebase
+        //    var config = {
+        //        apiKey: "AIzaSyDuupet_EdHPJzoXXOVVUW-ysZh2AJ1lhk",
+        //        authDomain: "cs2340-fd203.firebaseapp.com",
+        //        databaseURL: "https://cs2340-fd203.firebaseio.com",
+        //        projectId: "cs2340-fd203",
+        //        storageBucket: "cs2340-fd203.appspot.com",
+        //        messagingSenderId: "704772592041"
+        //    };
+        //    firebase.initializeApp(config);
+        //script.
+        //    firebase.auth().onAuthStateChanged(function (user) {
+        //        if (user) {
+        //            // User is signed in.
+        //            var displayName = user.displayName;
+        //            var email = user.email;
+        //            var emailVerified = user.emailVerified;
+        //            var photoURL = user.photoURL;
+        //            var isAnonymous = user.isAnonymous;
+        //            var uid = user.uid;
+        //            var providerData = user.providerData;
+        //            console.log("user is signed in");
+        //            console.log(user);
+        //        } else {
+        //            console.log("user is signed out");
+        //        }
+        //    });
+        //
+        //    var user = firebase.auth().currentUser;
+        //    var name, email, photoUrl, uid, emailVerified;
+        //
+        //    if (user != null) {
+        //        name = user.displayName;
+        //        email = user.email;
+        //        photoUrl = user.photoURL;
+        //        emailVerified = user.emailVerified;
+        //        uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+        //                         // this value to authenticate with your backend server, if
+        //                         // you have one. Use User.getToken() instead.
+        //    }
+    body
+        nav.light-blue.lighten-1(role='navigation')
+            .nav-wrapper.container
+                a#logo-container.brand-logo(href='#') Clean Water Crowdsourcing
+                ul.right.hide-on-med-and-down
+                    li.active
+                        a(href='#') Home
+                    li
+                        a(href='#') Water Source
+                    li
+                        a(href='#') Water Quality
+                    li
+                        a(href='#') User
+                ul#nav-mobile.side-nav
+                    li
+                        a(href='#') Home
+                    li
+                        a(href='#') Water Source
+                    li
+                        a(href='#') Water Quality
+                    li
+                        a(href='#') User
+                    |
+                a.button-collapse(href='#', data-activates='nav-mobile')
+                    i.material-icons menu
+        #index-banner.section.no-pad-bot
+            .container
+                br
+                br
+                h1.header.center.orange-text Starter Template
+                .row.center
+                    h5.header.col.s12.light A modern responsive front-end framework based on Material Design
+                .row.center
+                    a#download-button.btn-large.waves-effect.waves-light.orange(href='http://materializecss.com/getting-started.html') Get Started
+                br
+                br
+        .container
+            .section
+                .row
+                    .col.s12.m4
+                        .icon-block
+                            h2.center.light-blue-text
+                                i.material-icons flash_on
+                            h5.center Speeds up development
+                            p.light
+                                | We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.
+                    .col.s12.m4
+                        .icon-block
+                            h2.center.light-blue-text
+                                i.material-icons group
+                            h5.center User Experience Focused
+                            p.light
+                                | By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.
+                    .col.s12.m4
+                        .icon-block
+                            h2.center.light-blue-text
+                                i.material-icons settings
+                            h5.center Easy to work with
+                            p.light
+                                | We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.
+            br
+            br
+            .section
+        footer.page-footer.light-blue
+            .container
+                .row
+                    .col.l6.s12
+                        h5.white-text Company Bio
+                        p.grey-text.text-lighten-4
+                            | We are a team of college students working on this project like it&apos;s our full time job. Any amount would help support and continue development on this project and is greatly appreciated.
+                    .col.l3.s12
+                        h5.white-text Settings
+                        ul
+                            li
+                                a.white-text(href='#!') Link 1
+                            li
+                                a.white-text(href='#!') Link 2
+                            li
+                                a.white-text(href='#!') Link 3
+                            li
+                                a.white-text(href='#!') Link 4
+                    .col.l3.s12
+                        h5.white-text Connect
+                        ul
+                            li
+                                a.white-text(href='#!') Link 1
+                            li
+                                a.white-text(href='#!') Link 2
+                            li
+                                a.white-text(href='#!') Link 3
+                            li
+                                a.white-text(href='#!') Link 4
+            .footer-copyright
+                .container
+                    | Made by
+                    a.orange-text.text-lighten-3(href='#') Team Honey Badgers
+        script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+        script(src='js/materialize.min.js')
+        script(src='js/init.js')

@@ -1,0 +1,129 @@
+doctype html
+html(lang='en')
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+        title CS2340
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        link(href='stylesheets/materialize.min.css', type='text/css', rel='stylesheet', media='screen,projection')
+        link(href='stylesheets/style2.css', type='text/css', rel='stylesheet', media='screen,projection')
+        script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+        script(src='https://www.gstatic.com/firebasejs/3.8.0/firebase.js')
+        script(src='https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js')
+        script.
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDuupet_EdHPJzoXXOVVUW-ysZh2AJ1lhk",
+                authDomain: "cs2340-fd203.firebaseapp.com",
+                databaseURL: "https://cs2340-fd203.firebaseio.com",
+                projectId: "cs2340-fd203",
+                storageBucket: "cs2340-fd203.appspot.com",
+                messagingSenderId: "704772592041"
+            };
+            firebase.initializeApp(config);
+        script.
+            var name, email, photoUrl, uid, emailVerified;
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    name = user.displayName;
+                    email = user.email;
+                    photoUrl = user.photoURL;
+                    emailVerified = user.emailVerified;
+                    uid = user.uid;
+
+                    console.log("user is signed in");
+                    console.log(user);
+                    user.getToken().then(function (accessToken) {
+                        var links = document.getElementsByClassName('UserNavLink'), i;
+                        for (i = 0; i < links.length; i++) {
+                            links[i].textContent = name;
+                        }
+                        var fileName = window.location.pathname.split(/(\\|\/)/g).pop();
+                        if (name == 'homepage' || name == 'newhomepage') {
+                            links = document.getElementsByClassName('HomeNav'), i;
+                            for (i = 0; i < links.length; i++) {
+                                links[i].setAttribute('class', 'active');
+                            }
+                        } else if (name == 'watersrc') {
+                            links = document.getElementsByClassName('WaterSourceNav'), i;
+                            for (i = 0; i < links.length; i++) {
+                                links[i].setAttribute('class', 'active');
+                            }
+                        }
+                    });
+                } else {
+                    console.log("user is signed out");
+                }
+            });
+        block scripts
+
+    body
+        nav.light-blue.lighten-1(role='navigation')
+            .nav-wrapper.container
+                a#logo-container.brand-logo(href='#') Water Crowdsourcing
+                ul.right.hide-on-med-and-down
+                    li.HomeNav
+                        a(href='newhomepage', name='newhomepage') Home
+                    li.WaterSourceNav
+                        a(href='watersrc', name='watersrc') Water Source
+                    li.WaterQualityNav
+                        a(href='#') Water Quality
+                    li.UserNav
+                        a.UserNavLink(href='#') User
+                ul#nav-mobile.side-nav
+                    li.HomeNav
+                        a(href='#') Home
+                    li.WaterSourceNav
+                        a(href='#') Water Source
+                    li.WaterQualityNav
+                        a(href='#') Water Quality
+                    li.UserNav
+                        a.UserNavLink(href='#') User
+                    |
+                a.button-collapse(href='#', data-activates='nav-mobile')
+                    i.material-icons menu
+
+
+        #sign-in-status
+        #sign-in
+        #account-details
+
+        #content
+            block content
+
+
+        footer.page-footer.light-blue#footer
+            .container
+                .row
+                    .col.l6.s12
+                        h5.white-text Company Bio
+                        p.grey-text.text-lighten-4
+                            | We are a team of college students working on this project like it&apos;s our full time job. Any amount would help support and continue development on this project and is greatly appreciated.
+                    .col.l3.s12
+                        h5.white-text Settings
+                        ul
+                            li
+                                a.white-text(href='#!') Link 1
+                            li
+                                a.white-text(href='#!') Link 2
+                            li
+                                a.white-text(href='#!') Link 3
+                            li
+                                a.white-text(href='#!') Link 4
+                    .col.l3.s12
+                        h5.white-text Connect
+                        ul
+                            li
+                                a.white-text(href='#!') Link 1
+                            li
+                                a.white-text(href='#!') Link 2
+                            li
+                                a.white-text(href='#!') Link 3
+                            li
+                                a.white-text(href='#!') Link 4
+            .footer-copyright
+                .container
+                    | Made by
+                    a.orange-text.text-lighten-3(href='#') Team Honey Badgers
+        script(src='js/materialize.min.js')
+        script(src='js/init.js')

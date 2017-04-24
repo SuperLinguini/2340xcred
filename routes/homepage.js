@@ -9,7 +9,7 @@ console.log("entering homepage.js");
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  res.render('homepage');
+  res.render('newhomepage');
 });
 
 module.exports = router;

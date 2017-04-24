@@ -1,20 +1,12 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
-    block foot
-        a(class='myButton' href='homepage', name='homepage', value='1')  Home
-        a(class='myButton' href='watersource', name='watersource', value='1')  Water Source
-        a(class='myButton' href='waterquality', name='waterquality', value='1')  Water Quality
-        a(class='myButton' href='/', name='logout', value='1')  Logout
-        script.
-            firebase.auth().signOut().then(function() {
-                // Sign-out successful.
-                console.log("signout successful");
-            }, function(error) {
-                // An error happened.
-                console.log("and error occured");
-            });
+include layout
+
+block content
+
+
+
+    
+block foot
+    a(class='myButton' href='homepage', name='homepage', value='1')  Home
+    a(class='myButton' href='watersource', name='watersource', value='1')  Water Source
+    a(class='myButton' href='waterquality', name='waterquality', value='1')  Water Quality
+    a(class='myButton' href='/', name='logout', value='1')  Logout

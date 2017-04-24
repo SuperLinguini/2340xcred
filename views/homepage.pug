@@ -1,5 +1,5 @@
-extends footer
-block content
+include footer
+
     html
       head
         style.
@@ -7,6 +7,19 @@ block content
           height: 400px;
           width: 100%;
           }
+      script.
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+              // User is signed in.
+              console.log(user.email);
+              console.log(user.uid);
+              console.log(user.displayName);
+            } else {
+              // No user is signed in.
+              console.log(user);
+            }
+          });
+
       body
         h1 Welcome --- Implement User Registration and User Types
         #map
@@ -21,8 +34,9 @@ block content
           position: uluru,
           map: map
           });
+          console.log("map initialized");
           }
         script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDuupet_EdHPJzoXXOVVUW-ysZh2AJ1lhk&callback=initMap')
-
-
+        
         h3 Buttons Will Go Here
+block content

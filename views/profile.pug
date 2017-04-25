@@ -17,14 +17,9 @@ block content
 block scripts
     //link(href="stylesheets/profile.css", type='text/css', rel='stylesheet', media='screen,projection')
     script.
-        window.onload = function () {
-            console.log(email);
-            document.getElementById("name").value = name;
-            document.getElementById("email").value = email;
-            console.log(email);
-        }
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
+                document.getElementById("email").value = user.email;
                 var userData = firebase.database().ref('users/' + user.uid);
                 userData.on('value', function(snapshot) {
                     document.getElementById('title').setAttribute('value', snapshot.val().user_type);

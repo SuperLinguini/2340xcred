@@ -1,0 +1,57 @@
+extends layout
+block content
+  head
+    meta(charset='UTF-8')
+    title CS 2340
+    script(src='https://www.gstatic.com/firebasejs/3.8.0/firebase.js')
+    script.
+      // Initialize Firebase
+      var config = {
+      apiKey: "AIzaSyDuupet_EdHPJzoXXOVVUW-ysZh2AJ1lhk",
+      authDomain: "cs2340-fd203.firebaseapp.com",
+      databaseURL: "https://cs2340-fd203.firebaseio.com",
+      projectId: "cs2340-fd203",
+      storageBucket: "cs2340-fd203.appspot.com",
+      messagingSenderId: "704772592041"
+      };
+      firebase.initializeApp(config);
+
+    script(src='https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js')
+    link(type='text/css', rel='stylesheet', href='https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css')
+    script.
+        firebase.auth().signOut().then(function() {
+            // Sign-out successful.
+            console.log("signout successful");
+        }, function(error) {
+            // An error happened.
+            console.log("and error occured");
+        });
+
+    script.
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: '/homepage',
+        signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+        firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        tosUrl: '/auth/tos'
+      };
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+      
+      
+      
+  body
+    h1 CS 2340 Water App
+    #firebaseui-auth-container
+
+
+

@@ -1,6 +1,7 @@
 extends navbar
 
 block scripts
+
     script.
         var sourceReports = [];
         var sReportData = firebase.database().ref('waterSourceReports');
@@ -126,13 +127,14 @@ block content
                           input#text.validate(type='text')
                           |
                           label(for='text') Name
-                      .row
-                        a.btn-floating.btn-large.waves-effect.waves-light.red(style="float:right")
-                          i.material-icons add
-                        .input-field.col.s12
-                          input#location.validate(type='text', disabled="")
-                          |
-                          label(for='location') Location
+                      //.row
+                        //input.placepicker(size='40')
+                      .container
+                      .row(data-example='')
+                          .col-md-6
+                              .form-group
+                                  input.placepicker.form-control(placeholder='location')
+
                       .row
                         .input-field.col.s12
                             input#WSlocationLat.validate(type='number')

@@ -14,8 +14,8 @@ block content
 
                 var elt = document.createElement('p');
                 elt.setAttribute('style', 'clear: both; float:right');
-                var eltDate = new Date(childSnapshot.val()['date']['time']);
-                elt.innerHTML = 'Date: ' + 'mm/dd/yy hh:MM';
+                var time = new Date(childSnapshot.val()['date']['time']);
+                elt.innerHTML = 'Date: ' + time.toLocaleString();
                 newReport.appendChild(elt);
 
                 elt = document.createElement('p');
@@ -23,7 +23,8 @@ block content
                 newReport.appendChild(elt);
 
                 elt = document.createElement('p');
-                elt.innerHTML = 'Lat/Lng: [need to fill]';
+                elt.innerHTML = 'Lat/Lng: (' + Number(childSnapshot.val()['location']['latitude']).toFixed(3) + ', ' +
+                    Number(childSnapshot.val()['location']['longitude']).toFixed(3) + ')';
                 newReport.appendChild(elt);
 
                 elt = document.createElement('p');

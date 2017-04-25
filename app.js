@@ -13,7 +13,6 @@ var users = require('./routes/users');
 var homepage = require('./routes/homepage');
 var waterquality = require('./routes/waterquality');
 var watersource = require('./routes/watersource');
-var watersrc = require('./routes/watersrc')
 var newhomepage = require('./routes/newhomepage');
 var profile = require('./routes/profile')
 
@@ -38,7 +37,6 @@ app.use('index', index);
 app.use('/users', users);
 //app.use('/login', login);
 app.use('/homepage', homepage);
-app.use('/watersrc', watersrc);
 app.use('/watersource', watersource);
 app.use('/waterquality', waterquality);
 app.use('/newhomepage', newhomepage);

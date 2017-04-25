@@ -39,18 +39,6 @@ html(lang='en')
                         for (i = 0; i < links.length; i++) {
                             links[i].textContent = name + ' ▼';
                         }
-                        var fileName = window.location.pathname.split(/(\\|\/)/g).pop();
-                        if (name == 'homepage' || name == 'newhomepage') {
-                            links = document.getElementsByClassName('HomeNav'), i;
-                            for (i = 0; i < links.length; i++) {
-                                links[i].setAttribute('class', 'active');
-                            }
-                        } else if (name == 'watersrc') {
-                            links = document.getElementsByClassName('WaterSourceNav'), i;
-                            for (i = 0; i < links.length; i++) {
-                                links[i].setAttribute('class', 'active');
-                            }
-                        }
                     });
                 } else {
                     console.log("user is signed out");

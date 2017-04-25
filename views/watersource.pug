@@ -1,6 +1,14 @@
 extends navbar
 block content
     html
+      script.
+        var sourceReports = firebase.database().ref('waterSourceReports');
+        sourceReports.on('value', function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                console.log(childSnapshot.val());
+                // fill the data in collections
+            });
+        });
       head
         style.
           #map {

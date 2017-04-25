@@ -29,7 +29,7 @@ block content
             var gt = {lat: 33.775, lng: -84.396};
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 4,
-                center: gt
+                center: gt,
             });
 
             var sReportData = firebase.database().ref('waterSourceReports');

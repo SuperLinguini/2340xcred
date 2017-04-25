@@ -1,30 +1,40 @@
 extend navbar.pug
 block content
-    body
-        form(method="get")
-            br
-            br
-            div.input
-                span.label.green-text Name
-                input(type="text", name="name")
-            div.input
-                span.label.green-text Email
-                input(type="email", name="email")
-            div.input
-                span.label.green-text Home Address
-                input(type="text", name="address")
-            .input-field.col.s12.green-text
-                select
+    script.
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                document.getElementById('email').setAttribute('value', user.email);
+                document.getElementById('uidfield').setAttribute('value', user.uid);
+            }
+        });
+
+    .row
+        form(method='POST').col.s12(style='padding:4em;')
+            .row
+                .input-field.col.s12
+                    input#name.validate(name='name', type='text')
+                    |
+                    label(for='name') Name
+            .row
+                .input-field.col.s12
+                    input#email.validate(readonly='', name='email', value='Email', type='email')
+                    |
+                    label(for='email') Email
+            .row
+                .input-field.col.s12
+                    input#home_address.validate(name='address' type='text')
+                    |
+                    label(for='home_address') Home Address
+            .input-field.col.s12
+                select(name='user_type')
                     option(value='', disabled='', selected='') Choose your option
                     option(value='User') User
                     option(value='Worker') Worker
                     option(value='Manager') Manager
                     option(value='Administrator') Administrator
                 label User Type
-                br
+            input#uidfield(type='hidden' name='uid' value='')
             actions
                 button.btn.waves-effect.waves-light(type='submit', name='action')
                     | Register
                     i.material-icons.right send
-                br
-                br

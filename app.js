@@ -42,6 +42,9 @@ app.use('/watersource', watersource);
 app.use('/waterquality', waterquality);
 app.use('/newhomepage', newhomepage);
 app.use('/profile', profile);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use('/registration', registration);
 
 

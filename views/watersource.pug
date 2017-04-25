@@ -5,9 +5,9 @@ block content
             var sourceReports = [];
             var sReportData = firebase.database().ref('waterSourceReports');
             sReportData.orderByChild('reportNumber').on('value', function(snapshot) {
-                console.log(snapshot.val());
-                sourceReports = [];
-                snapshot.forEach(function(childSnapshot) {
+                    console.log(snapshot.val());
+                    sourceReports = [];
+                    snapshot.forEach(function(childSnapshot) {
                     console.log(childSnapshot.val());
                     sourceReports.push(childSnapshot.val());
                     // fill the data in collection
@@ -17,7 +17,6 @@ block content
                     var elt = document.createElement('p');
                     elt.setAttribute('style', 'clear: both; float:right');
                     var time = new Date(childSnapshot.val()['date']['time']);
-                    console.log(time);
                     elt.innerHTML = 'Date: ' + time.toLocaleDateString();
                     newReport.appendChild(elt);
 
@@ -50,9 +49,4 @@ block content
                 }
         body
 
-            ul.collection(style="width:60%", id='reportList')
-
-
-            //h1 Water Source
-            //
-            //h3 INSERT CHART HERE
+        ul.collection(style="width:60%", id='reportList')

@@ -4,15 +4,13 @@ block scripts
     script.
         var sourceReports = [];
         var sReportData = firebase.database().ref('waterSourceReports');
-        sReportData.orderByChild('reportNumber').on('value', function (snapshot) {
-            console.log(snapshot.val());
+        sReportData.on('value', function(snapshot) {
             sourceReports = [];
-            snapshot.forEach(function (childSnapshot) {
-                console.log(childSnapshot.val());
-                sourceReports.push(childSnapshot.val());
-                // fill the data in collection
-                var newReport = document.createElement('li');
-                newReport.className = 'collection-item'
+            snapshot.forEach(function(childSnapshot) {
+              sourceReports.push(childSnapshot.val());
+              // fill the data in collection
+              var newReport = document.createElement('li');
+              newReport.className = 'collection-item'
 
                 var elt = document.createElement('p');
                 elt.setAttribute('style', 'clear: both; float:right');

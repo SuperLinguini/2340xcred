@@ -16,8 +16,13 @@ block content
           width: 100%;
           }
       body
-        h1 Water Quality 
+        ul.collection(style="width:60%")
+          - var x = 50;
+          - for (var i=1; i<=x; i++) {
+          li.collection-item
+            p(style="clear: both; float:right" ) Date:
+            p My Report
+            p Lat/Lng:
+            p Water condition, Virus, Contaminant :
 
-
-        h3 INSERT CHART HERE
-        
+          - }

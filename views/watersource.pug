@@ -2,11 +2,40 @@ extends navbar
 block content
     html
       script.
-        var sourceReports = firebase.database().ref('waterSourceReports');
-        sourceReports.on('value', function(snapshot) {
+        var sourceReports = [];
+        var sReportData = firebase.database().ref('waterSourceReports');
+        sReportData.on('value', function(snapshot) {
+            sourceReports = [];
             snapshot.forEach(function(childSnapshot) {
-                console.log(childSnapshot.val());
-                // fill the data in collections
+              console.log(childSnapshot.val());
+              sourceReports.push(childSnapshot.val());
+              // fill the data in collection
+              var newReport = document.createElement('li');
+              newReport.className = 'collection-item'
+
+              var elt = document.createElement('p');
+              elt.setAttribute('style', 'clear: both; float:right');
+              elt.innerHTML = 'Date: [need to fill]'
+              newReport.appendChild(elt);
+
+              elt = document.createElement('p');
+              elt.setAttribute('style', 'clear: both; float:right');
+              elt.innerHTML = childSnapshot.val()['type'] + ', ' + childSnapshot.val()['condition'];
+              newReport.appendChild(elt);
+
+              elt = document.createElement('p');
+              elt.innerHTML = '#' + childSnapshot.val()['reportNumber'] + ' ' + childSnapshot.val()['reportName'];
+              newReport.appendChild(elt);
+
+              elt = document.createElement('p');
+              elt.innerHTML = childSnapshot.val()['reporter'];
+              newReport.appendChild(elt);
+
+              elt = document.createElement('p');
+              elt.innerHTML = 'Lat/Lng: [need to fill]';
+              newReport.appendChild(elt);
+
+              document.getElementById('reportList').appendChild(newReport);
             });
         });
       head
@@ -16,17 +45,17 @@ block content
           width: 100%;
           }
       body
-        //.row(STYLE="width:60%")
-        //  .col.s12.m6
-        //    .card.blue-grey.darken-1
-        //      .card-content.white-text
-        //        span.card-title Card Title
-        //        p
-        //          | Test
-        ul.collection(style="width:60%")
-          - var x = 50;
+
+        ul.collection(style="width:60%", id='reportList')
+          - var x = 5;
           - for (var i=1; i<=x; i++) {
-            li.collection-item Alvin
+            li.collection-item
+              p(style="clear: both; float:right" ) Date:
+              p(style="clear: both; float:right") Water condition:
+              p My Report
+              p name
+              p Lat/Lng:
+
             - }
 
 

@@ -22,9 +22,10 @@ html(lang='en')
             };
             firebase.initializeApp(config);
         script.
-            var name, email, photoUrl, uid, emailVerified;
+            var name, email, photoUrl, uid, emailVerified, theuser;
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
+                    theuser = user;
                     name = user.displayName;
                     email = user.email;
                     photoUrl = user.photoURL;

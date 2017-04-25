@@ -1,11 +1,10 @@
 body{
     margin: 0 0 0 0;
     background:url(http://i.imgur.com/gv18Smi.jpg);
-    background-size:100%;
+    background-size:cover;
     }
 
 .click{
-      background: url('');
       background-size:contain;
       position: relative;
         -webkit-border-radius: 50%;
@@ -79,8 +78,8 @@ body{
     margin-top:20px;
     border-bottom-left-radius:20px;
     border-bottom-right-radius:20px;
-    padding: 13px 0px 10px 0px;
-    font-size:18px;
+    padding: 0px 0px 10px 0px;
+    font-size:12px;
         }
 .PopUp {
     position: relative;
@@ -98,7 +97,7 @@ body{
     margin-top:20px;
     border-radius:20px;
     padding: 13px 0px 10px 0px;
-    font-size:18px;
+    font-size:12px;
 }
 .PopUp:after, .clickPopUp:after {
     bottom: 100%;
@@ -116,7 +115,7 @@ body{
     
 }
 .PopUp a, .clickPopUp a{
-        font-family: 'Helvetica Neue', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+    font-family: 'Helvetica Neue', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
     font-weight: 700;
     text-decoration:none;
     text-transform:uppercase;

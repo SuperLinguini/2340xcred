@@ -2,11 +2,18 @@ extends navbar
 block content
     html
       script.
-        var sourceReports = firebase.database().ref('waterSourceReports');
-        sourceReports.on('value', function(snapshot) {
+        var sourceReports = [];
+        var sReportData = firebase.database().ref('waterSourceReports');
+        sReportData.on('value', function(snapshot) {
+            sourceReports = [];
             snapshot.forEach(function(childSnapshot) {
-                console.log(childSnapshot.val());
-                // fill the data in collections
+              console.log(childSnapshot.val());
+              sourceReports.push(childSnapshot.val());
+              // fill the data in collection
+              var newReport = document.createElement('li');
+              newReport.className = 'collection-item'
+              newReport.innerHTML = childSnapshot.val()['reportNumber'] + ' ' + childSnapshot.val()['reportName'];
+              document.getElementById('reportList').appendChild(newReport);
             });
         });
       head
@@ -23,8 +30,8 @@ block content
         //        span.card-title Card Title
         //        p
         //          | Test
-        ul.collection(style="width:60%")
-          - var x = 50;
+        ul.collection(style="width:60%", id="reportList")
+          - var x = 5;
           - for (var i=1; i<=x; i++) {
             li.collection-item Alvin
             - }

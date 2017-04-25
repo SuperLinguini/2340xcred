@@ -42,4 +42,98 @@ block content
           width: 100%;
           }
       body
+        a.btn-floating.btn-large.waves-effect.waves-light.red(href = "#newQR", style="float:left")
+          i.material-icons(style="float:left") add
         ul.collection(style="width:60%", id='reportList')
+        .row
+          .col.s12.m6
+            #newQR.modal.light-blue.lighten-4
+              .modal-content
+                .card-content.black-text
+                  .card-content.black-text
+                    h5 Submit Water Quality Report
+                  .row
+                    form.col.s12
+                      .row
+                        .input-field.col.s12
+                          input#WQNametext.validate(type='text')
+                          |
+                          label(for='WQNametext') Name
+                      .row
+                        .input-field.col.s12
+                          input#WQlocationLat.validate(type='number')
+                          |
+                          label(for='WQlocationLat') Latitude
+                      .row
+                        .input-field.col.s12
+                          input#WQlocationLang.validate(type='number')
+                          |
+                          label(for='WQlocationLang') Langitude
+                      .row
+                        .input-field.col.s12
+                          select#WQWaterConditionSpinner
+                            option(value='', disabled='', selected='') Choose your option
+                            option(value='1') Safe
+                            option(value='2') Treatable
+                            option(value='3') Unsafe
+                          |
+                          label Water Condition
+                      .row
+                        .input-field.col.s12
+                          input#VirusText.validate(type='number')
+                          |
+                          label(for='VirusText') Virus PPM
+                      .row
+                        .input-field.col.s12
+                          input#Conttext.validate(type='number')
+                          |
+                          label(for='Conttext') Contaminant PPM
+
+                      .row
+                        .input-field.col.s12
+                          a.waves-effect.waves-light.btn(style="position: relative;left: 38%") SUBMIT
+        //.row
+        //  .col.s12.m6
+        //    #newQR.modal.light-blue.lighten-4
+        //        .modal-content
+        //          .card-content.black-text
+        //            .card-content.black-text
+        //              h5 Submit Water Quality Report
+        //            .row
+        //              form.col.s12
+        //                .row
+        //                  .input-field.col.s12
+        //                    input#WQNametext.validate(type='text')
+        //                    |
+        //                    label(for='WQNametext') Name
+        //                .row
+        //                  a.btn-floating.btn-large.waves-effect.waves-light.red(style="float:right")
+        //                    i.material-icons add
+        //                  .input-field.col.s12
+        //                    input#WQlocation.validate(type='text', disabled="")
+        //                    |
+        //                    label(for='WQlocation') Location
+        //                .row
+        //                  .input-field.col.s12
+        //                    select#WQWaterConditionSpinner
+        //                      option(value='', disabled='', selected='') Choose your option
+        //                      option(value='1') Safe
+        //                      option(value='2') Treatable
+        //                      option(value='3') Unsafe
+        //                    |
+        //                    label Water Condition
+        //                .row
+        //                  .input-field.col.s12
+        //                    input#VirusText.validate(type='number')
+        //                    |
+        //                    label(for='VirusText') Virus PPM
+        //                .row
+        //                  .input-field.col.s12
+        //                    input#Conttext.validate(type='number')
+        //                    |
+        //                    label(for='Conttext') Contaminant PPM
+        //
+        //                .row
+        //                  .input-field.col.s12
+        //                    a.waves-effect.waves-light.btn(style="position: relative;left: 38%") SUBMIT
+

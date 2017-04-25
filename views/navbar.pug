@@ -36,7 +36,7 @@ html(lang='en')
                     user.getToken().then(function (accessToken) {
                         var links = document.getElementsByClassName('UserNavLink'), i;
                         for (i = 0; i < links.length; i++) {
-                            links[i].textContent = name;
+                            links[i].textContent = name + ' ▼';
                         }
                         var fileName = window.location.pathname.split(/(\\|\/)/g).pop();
                         if (name == 'homepage' || name == 'newhomepage') {
@@ -55,9 +55,28 @@ html(lang='en')
                     console.log("user is signed out");
                 }
             });
+        script.
+            var signOut = function() {
+                firebase.auth().signOut().then(function () {
+                    // Sign-out successful.
+                    console.log("signout successful");
+                }, function (error) {
+                    // An error happened.
+                    console.log("and error occured");
+                });
+            }
         block scripts
 
     body
+        ul#dropdown1.dropdown-content
+            li
+                a(href='#!') Profile
+            li.divider
+            li
+                a(href='#!') Settings
+            li.divider
+            li
+                a(href='/' onclick='signOut()') Logout
         nav.light-blue.lighten-1(role='navigation')
             .nav-wrapper.container
                 a#logo-container.brand-logo(href='#') Water Crowdsourcing
@@ -69,7 +88,8 @@ html(lang='en')
                     li.WaterQualityNav
                         a(href='#') Water Quality
                     li.UserNav
-                        a.UserNavLink(href='#') User
+                        a.UserNavLink.dropdown-button(href="#!", data-activates="dropdown1")
+                            | User ▼
                 ul#nav-mobile.side-nav
                     li.HomeNav
                         a(href='#') Home

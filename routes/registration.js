@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router()
+var router = express.Router();
 
 var firebase = require('firebase');
 var config = {
@@ -11,6 +11,13 @@ var config = {
     messagingSenderId: "704772592041"
 };
 firebase.initializeApp(config);
+
+var uid;
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        uid = user.uid;
+    }
+});
 
 // Get a reference to the database service
 var database = firebase.database();
@@ -32,17 +39,17 @@ router.post('/', function(req, res, next) {
             email:email,
             address:address,
             user_type:user_type
-        })
+        });
         // res.send(name + email + address + user_type);
         res.render('newhomepage');
     } else {
-        res.render('registration');
+        res.render('registration', {uid:uid});
     }
 });
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('registration');
+    res.render('registration',{uid:uid});
 });
 
 module.exports = router;

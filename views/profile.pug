@@ -4,11 +4,11 @@ block content
             h4.green-text(align='left') Name
                 input(text, id="name", value="")
             h4.green-text(align='left') Home Address
-                input(text, value="Home Address Will Go Here")
+                input#home(text, value="Home Address Will Go Here")
             h4.green-text(align='left') Email Address
                 input(text, id="email", value="")
             h4.green-text(align='left') Title
-                input(text, value="User Title Will Go Here")
+                input#title(text, value="User Title Will Go Here")
             button.btn.waves-effect.waves-light(type='submit', name='action')
                 | Update Profile
                 i.material-icons.right send
@@ -23,5 +23,14 @@ block scripts
             document.getElementById("email").value = email;
             console.log(email);
         }
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                var userData = firebase.database().ref('users/' + user.uid);
+                userData.on('value', function(snapshot) {
+                    document.getElementById('title').setAttribute('value', snapshot.val().user_type);
+                    document.getElementById('home').setAttribute('value', snapshot.val().address);
+                });
+            }
+        });
 
 

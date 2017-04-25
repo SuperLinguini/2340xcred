@@ -2,11 +2,36 @@ extends navbar
 block content
     html
       script.
-        var qualityReports = firebase.database().ref('waterQualityReports');
-          qualityReports.on('value', function (snapshot) {
+          var qualityReports = [];
+          var qReportData = firebase.database().ref('waterQualityReports');
+          qReportData.on('value', function (snapshot) {
+            qualityReports = [];
             snapshot.forEach(function (childSnapshot) {
-              console.log(childSnapshot.val());
+              qualityReports.push(childSnapshot.val());
               // fill the data in collections
+                var newReport = document.createElement('li');
+                newReport.className = 'collection-item'
+
+                var elt = document.createElement('p');
+                elt.setAttribute('style', 'clear: both; float:right');
+                var eltDate = new Date(childSnapshot.val()['date']['time']);
+                elt.innerHTML = 'Date: ' + 'mm/dd/yy hh:MM';
+                newReport.appendChild(elt);
+
+                elt = document.createElement('p');
+                elt.innerHTML = '#' + childSnapshot.val()['reportNumber'] + ' ' + childSnapshot.val()['reportName'];
+                newReport.appendChild(elt);
+
+                elt = document.createElement('p');
+                elt.innerHTML = 'Lat/Lng: [need to fill]';
+                newReport.appendChild(elt);
+
+                elt = document.createElement('p');
+                elt.innerHTML = childSnapshot.val()['condition'] + ', ' + childSnapshot.val()['virusPPM'] + ', ' +
+                    childSnapshot.val()['contaminantPPM'];
+                newReport.appendChild(elt);
+
+                document.getElementById('reportList').appendChild(newReport);
             });
           });
       head
@@ -16,13 +41,4 @@ block content
           width: 100%;
           }
       body
-        ul.collection(style="width:60%")
-          - var x = 50;
-          - for (var i=1; i<=x; i++) {
-          li.collection-item
-            p(style="clear: both; float:right" ) Date:
-            p My Report
-            p Lat/Lng:
-            p Water condition, Virus, Contaminant :
-
-          - }
+        ul.collection(style="width:60%", id='reportList')

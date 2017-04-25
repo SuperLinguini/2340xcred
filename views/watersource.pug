@@ -7,7 +7,6 @@ block content
         sReportData.on('value', function(snapshot) {
             sourceReports = [];
             snapshot.forEach(function(childSnapshot) {
-              console.log(childSnapshot.val());
               sourceReports.push(childSnapshot.val());
               // fill the data in collection
               var newReport = document.createElement('li');
@@ -15,7 +14,8 @@ block content
 
               var elt = document.createElement('p');
               elt.setAttribute('style', 'clear: both; float:right');
-              elt.innerHTML = 'Date: [need to fill]'
+              var eltDate = new Date(childSnapshot.val()['date']['time']);
+              elt.innerHTML = 'Date: ' + 'mm/dd/yy hh:MM';
               newReport.appendChild(elt);
 
               elt = document.createElement('p');

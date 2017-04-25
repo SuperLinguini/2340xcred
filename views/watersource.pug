@@ -41,8 +41,8 @@ block scripts
         });
         function addSourceReport() {
             var rName = document.getElementById('text').value;
-            var lat = 56.8296;
-            var lng= 49.7736;
+            var lat = document.getElementById('WSlocationLat').value;
+            var lng= document.getElementById('WSlocationLong').value;
             var type = {
                 1: 'Bottled',
                 2: 'Well',
@@ -127,22 +127,15 @@ block content
                           |
                           label(for='text') Name
                       .row
-                        a.btn-floating.btn-large.waves-effect.waves-light.red(style="float:right")
-                          i.material-icons add
-                        .input-field.col.s12
-                          input#location.validate(type='text', disabled="")
-                          |
-                          label(for='location') Location
-                      .row
                         .input-field.col.s12
                             input#WSlocationLat.validate(type='number')
                             |
                             label(for='WSlocationLat') Latitude
                       .row
                         .input-field.col.s12
-                            input#WSlocationLang.validate(type='number')
+                            input#WSlocationLong.validate(type='number')
                             |
-                            label(for='WSlocationLang') Langitude
+                            label(for='WSlocationLong') Longitude
                       .row
                         .input-field.col.s12
                           select#WSWaterTypeSpinner
@@ -169,7 +162,7 @@ block content
                           label Water Condition
                       .row
                         .input-field.col.s12
-                            #submitReport.a.waves-effect.waves-light.btn(style="position: relative;left: 38%",
+                            #submitSReport.a.waves-effect.waves-light.btn(style="position: relative;left: 38%",
                             onclick='addSourceReport()') SUBMIT
         //.row
         //    .col.s12.m6

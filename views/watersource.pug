@@ -39,7 +39,12 @@ block scripts
                 document.getElementById('reportList').appendChild(newReport);
             });
         });
-        function addSourceReport(rName, lat, lng, type, cond) {
+        function addSourceReport() {
+            var rName = document.getElementById('reportName').value;
+            var lat = 56.8296;
+            var lng= 49.7736;
+            var type = document.getElementById('reportType').value;
+            var cond = document.getElementById('reportCond').value;
             var now = new Date();
             var rNumber = sourceReports[sourceReports.length-1]['reportNumber'] + 1;
             var reporter = name;
@@ -94,7 +99,7 @@ block content
                   .row
                     form.col.s12
                       .row
-                        .input-field.col.s12
+                        #reportName.input-field.col.s12
                           input#text.validate(type='text')
                           |
                           label(for='text') Name
@@ -106,7 +111,7 @@ block content
                           |
                           label(for='location') Location
                       .row
-                        .input-field.col.s12
+                        #reportType.input-field.col.s12
                           select#WSWaterTypeSpinner
                               option(value='', disabled='', selected='') Choose your option
                               option(value='1') Bottled
@@ -120,7 +125,7 @@ block content
                           label Water Type
 
                       .row
-                        .input-field.col.s12
+                        #reportCond.input-field.col.s12
                           select#WSWaterCondSpinner
                               option(value='', disabled='', selected='') Choose your option
                               option(value='1') Potable
@@ -131,7 +136,8 @@ block content
                           label Water Condition
                       .row
                         .input-field.col.s12
-                          a.waves-effect.waves-light.btn(style="position: relative;left: 38%") SUBMIT
+                          #submitReport.a.waves-effect.waves-light.btn(style="position: relative;left: 38%",
+                                onclick='addSourceReport()') SUBMIT
 
 
 

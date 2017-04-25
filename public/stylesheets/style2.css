@@ -20,8 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    align-items: left;
-    margin:auto;
+    align-items: center;
 }
 
 #footer {

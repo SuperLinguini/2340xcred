@@ -1,14 +1,4 @@
 extends navbar
-block scripts
-        //link(href="stylesheets/profile.css", type='text/css', rel='stylesheet', media='screen,projection')
-        script.
-            window.onload = function () {
-                console.log(email);
-                document.getElementById("name").value = name;
-                document.getElementById("email").value = email;
-            }
-
-
 block content
         form(type="get")
             h4.green-text(align='left') Name
@@ -24,3 +14,14 @@ block content
                 i.material-icons.right send
             br
             br
+block scripts
+    //link(href="stylesheets/profile.css", type='text/css', rel='stylesheet', media='screen,projection')
+    script.
+        window.onload = function () {
+            console.log(email);
+            document.getElementById("name").value = name;
+            document.getElementById("email").value = email;
+            console.log(email);
+        }
+
+

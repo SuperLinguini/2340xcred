@@ -14,7 +14,8 @@ var homepage = require('./routes/homepage');
 var waterquality = require('./routes/waterquality');
 var watersource = require('./routes/watersource');
 var watersrc = require('./routes/watersrc')
-var newhomepage = require('./routes/newhomepage')
+var newhomepage = require('./routes/newhomepage');
+var profile = require('./routes/profile')
 
 //var firebaseui = require('firebaseui');
 
@@ -41,7 +42,7 @@ app.use('/watersrc', watersrc);
 app.use('/watersource', watersource);
 app.use('/waterquality', waterquality);
 app.use('/newhomepage', newhomepage);
-
+app.use('/profile', profile);
 
 
 

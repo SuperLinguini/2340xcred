@@ -70,7 +70,7 @@ html(lang='en')
     body
         ul#dropdown1.dropdown-content
             li
-                a(href='#!') Profile
+                a(href='profile') Profile
             li.divider
             li
                 a(href='#!') Settings
@@ -84,19 +84,19 @@ html(lang='en')
                     li.HomeNav
                         a(href='newhomepage', name='newhomepage') Home
                     li.WaterSourceNav
-                        a(href='watersrc', name='watersrc') Water Source
+                        a(href='watersource', name='watersrc') Water Source
                     li.WaterQualityNav
-                        a(href='#') Water Quality
+                        a(href='waterquality', name='waterquality') Water Quality
                     li.UserNav
                         a.UserNavLink.dropdown-button(href="#!", data-activates="dropdown1")
                             | User ▼
                 ul#nav-mobile.side-nav
                     li.HomeNav
-                        a(href='#') Home
+                        a(href='newhomepage', name='newhomepage') Home
                     li.WaterSourceNav
-                        a(href='#') Water Source
+                        a(href='watersource', name='watersrc') Water Source
                     li.WaterQualityNav
-                        a(href='#') Water Quality
+                        a(href='waterquality', name='waterquality') Water Quality
                     li.UserNav
                         a.UserNavLink(href='#') User
                     |
@@ -143,7 +143,7 @@ html(lang='en')
                                 a.white-text(href='#!') Link 4
             .footer-copyright
                 .container
-                    | Made by
+                    | Made by 
                     a.orange-text.text-lighten-3(href='#') Team Honey Badgers
         script(src='js/materialize.min.js')
         script(src='js/init.js')

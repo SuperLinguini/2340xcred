@@ -41,8 +41,8 @@ block scripts
         });
         function addSourceReport() {
             var rName = document.getElementById('text').value;
-            var lat = document.getElementById('WSlocationLat').value;
-            var lng= document.getElementById('WSlocationLong').value;
+            var lat = parseInt(document.getElementById('WSlocationLat').value);
+            var lng= parseInt(document.getElementById('WSlocationLong').value);
             var type = {
                 1: 'Bottled',
                 2: 'Well',

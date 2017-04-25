@@ -37,15 +37,15 @@ block content
           });
           function addQualityReport() {
               var rName = document.getElementById('WQNametext').value;
-              var lat = document.getElementById('WQlocationLat').value;
-              var lng = document.getElementById('WQlocationLong').value;
+              var lat = parseInt(document.getElementById('WQlocationLat').value);
+              var lng = parseInt(document.getElementById('WQlocationLong').value);
               var cond = {
                   1: 'Safe',
                   2: 'Treatable',
                   3: 'Unsafe'
               }[document.getElementById('WQWaterConditionSpinner').value];
-              var virus = document.getElementById('VirusText').value;
-              var contam = document.getElementById('Conttext').value;
+              var virus = parseInt(document.getElementById('VirusText').value);
+              var contam = parseInt(document.getElementById('Conttext').value);
               var now = new Date();
               var rNumber = qualityReports[qualityReports.length - 1]['reportNumber'] + 1;
               var snippet = '#' + rNumber + ' ' + now.toLocaleString() + ' ' + cond + '/' + virus + '/' + contam;

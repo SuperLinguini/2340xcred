@@ -40,72 +40,64 @@ block scripts
             });
         });
 
-  block content
-        style.
+block content
+    style.
           #map {
           height: 400px;
           width: 100%;
           }
-      body
-        a.btn-floating.btn-large.waves-effect.waves-light.red(style="float:left")
+    body
+        a.btn-floating.btn-large.waves-effect.waves-light.red(href = "#newSR", style="float:left")
           i.material-icons(style="float:left") add
         ul.collection(style="width:60%", id='reportList')
         .row
           .col.s12.m6
-            .card.blue-grey.darken-1(style="width:600px")
-              .card-content.white-text
-                span.card-title Submit Water Source Report
-                p
-                  |
-              //.card-action
-              //  a(href='#') This is a link
-              //  |
-              //  a(href='#') This is a link
-              .row
-                form.col.s12
+            #newSR.modal.light-blue.lighten-4
+                .modal-content
+                  .card-content.black-text
+                    h5 Submit Water Source Report
                   .row
-                    .input-field.col.s12
-                      input#text.validate(type='text')
-                      |
-                      label(for='text') Name
-                  .row
-                    a.btn-floating.btn-large.waves-effect.waves-light.red(style="float:right")
-                      i.material-icons add
-                    .input-field.col.s12
-                      input#location.validate(type='text', disabled="")
-                      |
-                      label(for='location') Location
-                  .row
-                    .input-field.col.s12
-                      label Water Type
-                  .row
-                    .input-field.col.s12
-                      ul#dropdown2.dropdown-content
-                        li
-                          a(href='#!')
-                            | one
-                            span.badge 1
-                        li
-                          a(href='#!')
-                            | two
-                            span.new.badge 1
-                        li
-                          a(href='#!') three
-                      |
-                      a.btn.dropdown-button(href='#!', data-activates='dropdown2')
-                        | Dropdown
-                        i.mdi-navigation-arrow-drop-down.right
-                  .row
-                    .input-field.col.s12
-                      select(multiple='')
-                        optgroup(label='team 1')
-                          option(value='1') Option 1
-                          option(value='2') Option 2
-                        optgroup(label='team 2')
-                          option(value='3') Option 3
-                          option(value='4') Option 4
-                      |
-                      label Optgroups
+                    form.col.s12
+                      .row
+                        .input-field.col.s12
+                          input#text.validate(type='text')
+                          |
+                          label(for='text') Name
+                      .row
+                        a.btn-floating.btn-large.waves-effect.waves-light.red(style="float:right")
+                          i.material-icons add
+                        .input-field.col.s12
+                          input#location.validate(type='text', disabled="")
+                          |
+                          label(for='location') Location
+                      .row
+                        .input-field.col.s12
+                          select#WSWaterTypeSpinner
+                              option(value='', disabled='', selected='') Choose your option
+                              option(value='1') Bottled
+                              option(value='2') Well
+                              option(value='3') Stream
+                              option(value='4') Lake
+                              option(value='5') Spring
+                              option(value='6') Other
+
+                          |
+                          label Water Type
+
+                      .row
+                        .input-field.col.s12
+                          select#WSWaterCondSpinner
+                              option(value='', disabled='', selected='') Choose your option
+                              option(value='1') Potable
+                              option(value='2') Treatable_Clear
+                              option(value='3') Treatable_Muddy
+                              option(value='4') Waste
+                          |
+                          label Water Condition
+                      .row
+                        .input-field.col.s12
+                          a.waves-effect.waves-light.btn(style="position: relative;left: 38%") SUBMIT
+
 
 
 

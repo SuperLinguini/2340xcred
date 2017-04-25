@@ -3,6 +3,11 @@
 
         $('.button-collapse').sideNav();
         $(".dropdown-button").dropdown();
+        $("select[id$='WSWaterTypeSpinner'] option[value=1]").attr("selected", true);
+        $("select[id$='WSWaterCondSpinner'] option[value=1]").attr("selected", true);
+        $("select[id$='WQWaterConditionSpinner'] option[value=1]").attr("selected", true);
+        $('.modal').modal();
+        $(".placepicker").placepicker();
         $('select').material_select();
         var fileName = window.location.pathname.split(/(\\|\/)/g).pop();
         if (fileName == 'homepage' || fileName == 'newhomepage') {

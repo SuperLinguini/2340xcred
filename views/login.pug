@@ -1,71 +1,208 @@
+//
+//extends navbar.pug
+//
+//block scripts
+//    link(type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css")
+//    script(src='https://www.gstatic.com/firebasejs/3.8.0/firebase.js')
+//    script(src='https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js')
+//    script.
+//        // Initialize Firebase
+//        var config = {
+//            apiKey: "AIzaSyDuupet_EdHPJzoXXOVVUW-ysZh2AJ1lhk",
+//            authDomain: "cs2340-fd203.firebaseapp.com",
+//            databaseURL: "https://cs2340-fd203.firebaseio.com",
+//            projectId: "cs2340-fd203",
+//            storageBucket: "cs2340-fd203.appspot.com",
+//            messagingSenderId: "704772592041"
+//        };
+//        firebase.initializeApp(config);
+//    script.
+//        firebase.auth().onAuthStateChanged(function (user) {
+//            if (user) {
+//                // User is signed in.
+//                var displayName = user.displayName;
+//                var email = user.email;
+//                var emailVerified = user.emailVerified;
+//                var photoURL = user.photoURL;
+//                var isAnonymous = user.isAnonymous;
+//                var uid = user.uid;
+//                var providerData = user.providerData;
+//                console.log("user is signed in");
+//                console.log(user);
+//            } else {
+//                console.log("user is signed out");
+//            }
+//        });
+//
+//        var user = firebase.auth().currentUser;
+//        var name, email, photoUrl, uid, emailVerified;
+//
+//        if (user != null) {
+//            name = user.displayName;
+//            email = user.email;
+//            photoUrl = user.photoURL;
+//            emailVerified = user.emailVerified;
+//            uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+//                             // this value to authenticate with your backend server, if
+//                             // you have one. Use User.getToken() instead.
+//        }
+//    script.
+//        // FirebaseUI config.
+//        var uiConfig = {
+//            signInSuccessUrl: '/homepage',
+//            signInOptions: [
+//                // Leave the lines as is for the providers you want to offer your users.
+//                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+//                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+//                firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+//                firebase.auth.GithubAuthProvider.PROVIDER_ID,
+//                firebase.auth.EmailAuthProvider.PROVIDER_ID
+//            ],
+//            // Terms of service url.
+//            tosUrl: '<your-tos-url>'
+//        };
+//
+//        // Initialize the FirebaseUI Widget using Firebase.
+//        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+//        // The start method will wait until the DOM is loaded.
+//        ui.start('#firebaseui-auth-container', uiConfig);
+//
+//block content
+//    #firebaseui-auth-container
 
-extends navbar.pug
 
-block scripts
-    link(type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css")
-    script(src='https://www.gstatic.com/firebasejs/3.8.0/firebase.js')
-    script(src='https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js')
-    script.
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyDuupet_EdHPJzoXXOVVUW-ysZh2AJ1lhk",
-            authDomain: "cs2340-fd203.firebaseapp.com",
-            databaseURL: "https://cs2340-fd203.firebaseio.com",
-            projectId: "cs2340-fd203",
-            storageBucket: "cs2340-fd203.appspot.com",
-            messagingSenderId: "704772592041"
-        };
-        firebase.initializeApp(config);
-    script.
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                // User is signed in.
-                var displayName = user.displayName;
-                var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
-                var isAnonymous = user.isAnonymous;
-                var uid = user.uid;
-                var providerData = user.providerData;
-                console.log("user is signed in");
-                console.log(user);
-            } else {
-                console.log("user is signed out");
+doctype html
+html(lang='en')
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+        title CS2340
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        link(href='stylesheets/materialize.min.css', type='text/css', rel='stylesheet', media='screen,projection')
+        link(href='stylesheets/style2.css', type='text/css', rel='stylesheet', media='screen,projection')
+        script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+        script(src='https://www.gstatic.com/firebasejs/3.8.0/firebase.js')
+        script(src='https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js')
+        script.
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDuupet_EdHPJzoXXOVVUW-ysZh2AJ1lhk",
+                authDomain: "cs2340-fd203.firebaseapp.com",
+                databaseURL: "https://cs2340-fd203.firebaseio.com",
+                projectId: "cs2340-fd203",
+                storageBucket: "cs2340-fd203.appspot.com",
+                messagingSenderId: "704772592041"
+            };
+            firebase.initializeApp(config);
+        script.
+            var name, email, photoUrl, uid, emailVerified;
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    name = user.displayName;
+                    email = user.email;
+                    photoUrl = user.photoURL;
+                    emailVerified = user.emailVerified;
+                    uid = user.uid;
+
+                    console.log("user is signed in");
+                    console.log(user);
+                    user.getToken().then(function (accessToken) {
+                        var links = document.getElementsByClassName('UserNavLink'), i;
+                        for (i = 0; i < links.length; i++) {
+                            links[i].textContent = name + ' ▼';
+                        }
+                    });
+                } else {
+                    console.log("user is signed out");
+                }
+            });
+        script.
+            var signOut = function() {
+                firebase.auth().signOut().then(function () {
+                    // Sign-out successful.
+                    console.log("signout successful");
+                }, function (error) {
+                    // An error happened.
+                    console.log("and error occured");
+                });
             }
-        });
 
-        var user = firebase.auth().currentUser;
-        var name, email, photoUrl, uid, emailVerified;
 
-        if (user != null) {
-            name = user.displayName;
-            email = user.email;
-            photoUrl = user.photoURL;
-            emailVerified = user.emailVerified;
-            uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-                             // this value to authenticate with your backend server, if
-                             // you have one. Use User.getToken() instead.
-        }
-    script.
-        // FirebaseUI config.
-        var uiConfig = {
-            signInSuccessUrl: '/homepage',
-            signInOptions: [
-                // Leave the lines as is for the providers you want to offer your users.
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-                firebase.auth.GithubAuthProvider.PROVIDER_ID,
-                firebase.auth.EmailAuthProvider.PROVIDER_ID
-            ],
-            // Terms of service url.
-            tosUrl: '<your-tos-url>'
-        };
 
-        // Initialize the FirebaseUI Widget using Firebase.
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        // The start method will wait until the DOM is loaded.
-        ui.start('#firebaseui-auth-container', uiConfig);
+        link(type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css")
+        script(src='https://www.gstatic.com/firebasejs/3.8.0/firebase.js')
+        script(src='https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js')
+        script.
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDuupet_EdHPJzoXXOVVUW-ysZh2AJ1lhk",
+                authDomain: "cs2340-fd203.firebaseapp.com",
+                databaseURL: "https://cs2340-fd203.firebaseio.com",
+                projectId: "cs2340-fd203",
+                storageBucket: "cs2340-fd203.appspot.com",
+                messagingSenderId: "704772592041"
+            };
+            firebase.initializeApp(config);
+        script.
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    // User is signed in.
+                    var displayName = user.displayName;
+                    var email = user.email;
+                    var emailVerified = user.emailVerified;
+                    var photoURL = user.photoURL;
+                    var isAnonymous = user.isAnonymous;
+                    var uid = user.uid;
+                    var providerData = user.providerData;
+                    console.log("user is signed in");
+                    console.log(user);
+                } else {
+                    console.log("user is signed out");
+                }
+            });
 
-block content
-    #firebaseui-auth-container
+            var user = firebase.auth().currentUser;
+            var name, email, photoUrl, uid, emailVerified;
+
+            if (user != null) {
+                name = user.displayName;
+                email = user.email;
+                photoUrl = user.photoURL;
+                emailVerified = user.emailVerified;
+                uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                                 // this value to authenticate with your backend server, if
+                                 // you have one. Use User.getToken() instead.
+            }
+        script.
+            // FirebaseUI config.
+            var uiConfig = {
+                signInSuccessUrl: '/homepage',
+                signInOptions: [
+                    // Leave the lines as is for the providers you want to offer your users.
+                    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+                    firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                    firebase.auth.EmailAuthProvider.PROVIDER_ID
+                ],
+                // Terms of service url.
+                tosUrl: '<your-tos-url>'
+            };
+
+            // Initialize the FirebaseUI Widget using Firebase.
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());
+            // The start method will wait until the DOM is loaded.
+            ui.start('#firebaseui-auth-container', uiConfig);
+
+    body
+        .row
+            .col.s12.m10(style='width:100%;margin:1em;')
+                .card.light-blue.darken-1.hoverable(style='padding:2em 4em 2em 4em;')
+                    h3.white-text.center Water Crowdsourcing
+                    h3.white-text.center Login
+                    .card-content.center
+                        p.white-text Please select a provider to sign in or register with!
+                    #firebaseui-auth-container
+
+        script(src='js/materialize.min.js')
+        script(src='js/init.js')

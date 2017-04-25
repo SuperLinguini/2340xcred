@@ -12,7 +12,29 @@ block content
               // fill the data in collection
               var newReport = document.createElement('li');
               newReport.className = 'collection-item'
-              newReport.innerHTML = childSnapshot.val()['reportNumber'] + ' ' + childSnapshot.val()['reportName'];
+
+              var elt = document.createElement('p');
+              elt.setAttribute('style', 'clear: both; float:right');
+              elt.innerHTML = 'Date: [need to fill]'
+              newReport.appendChild(elt);
+
+              elt = document.createElement('p');
+              elt.setAttribute('style', 'clear: both; float:right');
+              elt.innerHTML = childSnapshot.val()['type'] + ', ' + childSnapshot.val()['condition'];
+              newReport.appendChild(elt);
+
+              elt = document.createElement('p');
+              elt.innerHTML = '#' + childSnapshot.val()['reportNumber'] + ' ' + childSnapshot.val()['reportName'];
+              newReport.appendChild(elt);
+
+              elt = document.createElement('p');
+              elt.innerHTML = childSnapshot.val()['reporter'];
+              newReport.appendChild(elt);
+
+              elt = document.createElement('p');
+              elt.innerHTML = 'Lat/Lng: [need to fill]';
+              newReport.appendChild(elt);
+
               document.getElementById('reportList').appendChild(newReport);
             });
         });
@@ -24,8 +46,8 @@ block content
           }
       body
 
-        ul.collection(style="width:60%")
-          - var x = 50;
+        ul.collection(style="width:60%", id='reportList')
+          - var x = 5;
           - for (var i=1; i<=x; i++) {
             li.collection-item
               p(style="clear: both; float:right" ) Date:

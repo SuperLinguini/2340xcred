@@ -39,6 +39,41 @@ block scripts
                 document.getElementById('reportList').appendChild(newReport);
             });
         });
+        function addSourceReport(rName, lat, lng, type, cond) {
+            var now = new Date();
+            var rNumber = sourceReports[sourceReports.length-1]['reportNumber'] + 1;
+            var reporter = name;
+            var snippet = '#' + rNumber + ' ' + now.toLocaleString() + ' ' + type + '/' + cond;
+            var jsonReport = {
+
+                'condition': cond,
+                'date':{
+                    'date': now.getDate(),
+                    'day': now.getDay(),
+                    'hours': now.getHours(),
+                    'minutes': now.getMinutes(),
+                    'month': now.getMonth(),
+                    'seconds': now.getSeconds(),
+                    'time': now.getTime(),
+                    'timezoneOffset': now.getTimezoneOffset(),
+                    'year': now.getYear()
+                },
+                'location': {
+                    'latitude': lat,
+                    'longitude': lng,
+                    'mapsLatLng': {
+                        'latitude': lat,
+                        'longitude': lng
+                    }
+                },
+                'reportName': rName,
+                'reporter': reporter,
+                'snippet': snippet,
+                'type': type
+            }
+            var newSourceReport = sReportData.push();
+            newSourceReport.set(jsonReport);
+        }
 
 block content
     style.

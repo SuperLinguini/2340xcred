@@ -64,3 +64,21 @@ block content
             console.log("map initialized");
         }
     script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDuupet_EdHPJzoXXOVVUW-ysZh2AJ1lhk&callback=initMap')
+
+    script.
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                var userData = firebase.database().ref('users/' + user.uid);
+                userData.on('value', function (snapshot) {
+                    document.getElementById('title').setAttribute('value', snapshot.val().user_type);
+                    document.getElementById('home').setAttribute('value', snapshot.val().address);
+                    var user_type = snapshot.val().user_type;
+                    if (user_type === 'User') {
+                        links = document.getElementsByClassName('WaterQualityNav');
+                        for (var i = 0; i < links.length; i++) {
+                            links[i].setAttribute('class', 'hide');
+                        }
+                    }
+                });
+            }
+        });

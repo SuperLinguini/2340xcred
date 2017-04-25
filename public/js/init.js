@@ -21,6 +21,11 @@
             for (var i = 0; i < links.length; i++) {
                 links[i].setAttribute('class', 'active');
             }
+        } else if (fileName == 'waterquality') {
+            links = document.getElementsByClassName('WaterQualityNav');
+            for (var i = 0; i < links.length; i++) {
+                links[i].setAttribute('class', 'active');
+            }
         }
     }); // end of document ready
 })(jQuery); // end of jQuery name space

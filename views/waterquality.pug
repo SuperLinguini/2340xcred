@@ -35,6 +35,60 @@ block content
                 document.getElementById('reportList').appendChild(newReport);
             });
           });
+          function addQualityReport() {
+              var rName = document.getElementById('WQNametext').value;
+              var lat = document.getElementById('WQlocationLat').value;
+              var lng = document.getElementById('WQlocationLong').value;
+              var cond = {
+                  1: 'Safe',
+                  2: 'Treatable',
+                  3: 'Unsafe'
+              }[document.getElementById('WQWaterConditionSpinner').value];
+              var virus = document.getElementById('VirusText').value;
+              var contam = document.getElementById('Conttext').value;
+              var now = new Date();
+              var rNumber = qualityReports[qualityReports.length - 1]['reportNumber'] + 1;
+              var snippet = '#' + rNumber + ' ' + now.toLocaleString() + ' ' + cond + '/' + virus + '/' + contam;
+              console.log('rName = ' + rName);
+              console.log('lat = ' + lat);
+              console.log('lng = ' + lng);
+              console.log('cond = ' + cond);
+              console.log('virus = ' + virus);
+              console.log('contam = ' + contam);
+              console.log('now = ' + now);
+              console.log('rNumber = ' + rNumber);
+              console.log('snippet = ' + snippet);
+              var jsonReport = {
+                  'condition': cond,
+                  'contaminantPPM': contam,
+                  'date': {
+                      'date': now.getDate(),
+                      'day': now.getDay(),
+                      'hours': now.getHours(),
+                      'minutes': now.getMinutes(),
+                      'month': now.getMonth(),
+                      'seconds': now.getSeconds(),
+                      'time': now.getTime(),
+                      'timezoneOffset': now.getTimezoneOffset(),
+                      'year': now.getYear()
+                  },
+                  'location': {
+                      'latitude': lat,
+                      'longitude': lng,
+                      'mapsLatLng': {
+                          'latitude': lat,
+                          'longitude': lng
+                      }
+                  },
+                  'reportName': rName,
+                  'reportNumber': rNumber,
+                  'snippet': snippet,
+                  'virusPPM': virus
+              }
+              var newQualityReport = firebase.database().ref('waterQualityReports/' + rNumber);
+              newQualityReport.set(jsonReport);
+              console.log('quality report submitted');
+          }
       head
         style.
           #map {
@@ -66,9 +120,9 @@ block content
                           label(for='WQlocationLat') Latitude
                       .row
                         .input-field.col.s12
-                          input#WQlocationLang.validate(type='number')
+                          input#WQlocationLong.validate(type='number')
                           |
-                          label(for='WQlocationLang') Langitude
+                          label(for='WQlocationLong') Longitude
                       .row
                         .input-field.col.s12
                           select#WQWaterConditionSpinner
@@ -91,7 +145,8 @@ block content
 
                       .row
                         .input-field.col.s12
-                          a.waves-effect.waves-light.btn(style="position: relative;left: 38%") SUBMIT
+                          #sumbitQReport.a.waves-effect.waves-light.btn(style="position: relative;left: 38%",
+                          onclick='addQualityReport()') SUBMIT
         //.row
         //  .col.s12.m6
         //    #newQR.modal.light-blue.lighten-4

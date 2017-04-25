@@ -1,0 +1,30 @@
+extend navbar.pug
+block content
+    body
+        form(method="get")
+            br
+            br
+            div.input
+                span.label.green-text Name
+                input(type="text", name="name")
+            div.input
+                span.label.green-text Email
+                input(type="email", name="email")
+            div.input
+                span.label.green-text Home Address
+                input(type="text", name="address")
+            .input-field.col.s12.green-text
+                select
+                    option(value='', disabled='', selected='') Choose your option
+                    option(value='User') User
+                    option(value='Worker') Worker
+                    option(value='Manager') Manager
+                    option(value='Administrator') Administrator
+                label User Type
+                br
+            actions
+                button.btn.waves-effect.waves-light(type='submit', name='action')
+                    | Register
+                    i.material-icons.right send
+                br
+                br
